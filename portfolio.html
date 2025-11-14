@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivaleela Portfolio</title>
+    <link rel="icon" type="image/png" href="Assets\shiva.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--secondary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .hero h1 span {
+            color: var(--primary);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37,99,235,0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* About */
+        .about {
+            padding: 100px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skill-item i {
+            color: var(--primary);
+        }
+        .about-section {
+    position: relative; /* needed for absolute positioning */
+    padding: 50px;
+    background: #f0f9ff;
+    display: flex;
+    align-items: flex-start; /* aligns text with top of image */
+    gap: 30px;
+    min-height: 400px; /* ensures enough space for image */
+}
+        
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-gray);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+             position: absolute; /* position relative to parent */
+            /* distance from top of section */
+            top: 750px;
+    right: 150px;  
+        }
+
+        /* Portfolio */
+        .portfolio {
+            padding: 100px 0;
+            background: white;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .portfolio-item {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .portfolio-info {
+            padding: 25px;
+        }
+        .portfolio-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        .portfolio-info p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .contact {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Contact Item */
+.contact-item {
+    display: flex;
+    align-items: center; /* Centers icon with text vertically */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">Shivaleela <span> medida</span></a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Hi, I'm <span>M.SHIVALEELA</span><br>Java Developer</h1>
+            <p>I create responsive websites and applications that help businesses succeed.</p>
+            <div class="hero-btns">
+                <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Java Developer</h3>
+<p>Hello, I'm M. Shivaleela! I’m a fresher Java developer with a passion for creating responsive, user-friendly, and visually appealing websites. I enjoy turning ideas into functional web experiences using HTML, CSS, and JavaScript, and I’m eager to learn modern frameworks and tools to enhance my skills.</p>
+
+<p></p>I focus on writing clean, maintainable code, ensuring websites are accessible, fast, and optimized for all devices. My goal is to contribute to meaningful projects while continuously growing as a developer and bringing innovative web solutions to life.</p>
+
+                <h4 style="margin:25px 0 15px;">My Skills</h4>
+                <div class="skills">
+                    <div class="skill-item"><i class="fab fa-html5"></i><span>Java programming</span></div>
+                    <div class="skill-item"><i class="fab fa-java"></i><span>HTML</span></div>
+                    <div class="skill-item"><i class="fas fa-code"></i><span>IoT</span></div>
+                    <div class="skill-item"><i class="fas fa-mobile-alt"></i><span>Web Development</span></div>
+                    <div class="skill-item"><i class="fas fa-paint-brush"></i><span>VLSI</span></div>
+                </div>
+            </div>
+
+           <div class="about-image">
+    <img src="Assets/shiva.jpg" 
+         alt="M. Shivaleela, Java Developer" 
+         class="profile-img" 
+         loading="lazy">
+</div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <h2 class="section-title">My Projects</h2>
+
+        <div class="portfolio-grid">
+
+            <!-- Project 1 -->
+            <div class="portfolio-item">
+                <img src="Assets\images.jpg"
+                     alt="Smart Parking System by using IoT"
+                     class="portfolio-img">
+                <div class="portfolio-info">
+                    <h3>Smart Parking  management System by using IoT</h3>
+                    <p>Automates parking space usage with sensors or software logic for efficiency.</p>
+                    <a href="https://github.com/shivaleelamedida-max/majorprojectsmartparking"
+                       target="_blank"
+                       class="btn btn-secondary"
+                       style="margin-top: 10px; display:inline-block;">
+                       Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="portfolio-item">
+                <img src="Assets\pexels-photo-247763.jpeg"
+                     alt="Industrial Pollution"
+                     class="portfolio-img">
+                <div class="portfolio-info">
+                    <h3>Industrial Pollution Monitoring System</h3>
+                    <p>Monitors pollution levels from factories to ensure safety and compliance.</p>
+                    <a href="https://github.com/shivaleelamedida-max/miniproject-industrial-pollution-system"
+                       target="_blank"
+                       class="btn btn-secondary"
+                       style="margin-top: 10px; display:inline-block;">
+                       Read More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="portfolio-item">
+                <img src="Assets\istockphoto-1406625741-612x612.jpg"
+                     alt="Juice Bar POS"
+                     class="portfolio-img">
+                <div class="portfolio-info">
+                    <h3>Juice Bar POS GUI</h3>
+                    <p>Software solution managing orders, inventory, payments, and sales reports.</p>
+                    <a href="https://github.com/shivaleelamedida-max/juice-bar-poinrifsales"
+                       target="_blank"
+                       class="btn btn-secondary"
+                       style="margin-top: 10px; display:inline-block;">
+                       Read More
+                    </a>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="portfolio-item">
+                <img src="Assets\blog-why-reverse-parking-hero@2x.jpg"
+                     class="portfolio-img">
+                <div class="portfolio-info">
+                    <h3>Smart Parking management System using CUI</h3>
+                    <p>Smart Parking System using CUI is a text-based application that manages vehicle entries, exits, and parking slot availability through a simple console menu.</p>
+                    <a href="https://github.com/shivaleelamedida-max/smartparking-management-system-using-cui"
+                       target="_blank"
+                       class="btn btn-secondary"
+                       style="margin-top: 10px; display:inline-block;">
+                       Read More
+                    </a>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Let's Talk About Your Project</h3>
+                <div class="contact-item"><i class="fas fa-envelope"></i><p>shivaleelamedida@gmail.com</p></div>
+                <div class="contact-item"><i class="fas fa-phone"></i><p>+91(6301826101)</p></div>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><p>Jangaon, Telangana</p></div>
+            </div>
+
+            <div class="contact-form">
+                <form>
+                 <div><input type="text" placeholder="Your Name" required></div><br>
+                  <div> <input type="email" placeholder="Your Email" required></div> <br>
+                  <div> <input type="text" placeholder="Subject"></div><br> 
+                  <div> <textarea placeholder="Your Message" required></textarea></div> <br>
+                 <div>  <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button></div><br> 
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-logo">shivaleela<span> medida</span></div><br>
+        <p>&copy; 2025 Medida Shivaleela. All rights reserved.</p><br>
+    </div>
+</footer>
+
+<script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href'))
+                .scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Mobile menu toggle
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenu.addEventListener('click', () => {
+        if (navLinks.style.display === 'flex') {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.background = 'white';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '70px';
+            navLinks.style.right = '20px';
+            navLinks.style.padding = '20px';
+            navLinks.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            navLinks.style.borderRadius = '10px';
+            navLinks.style.zIndex = '999';
+        }
+    });
+</script>
+
+</body>
+</html>
